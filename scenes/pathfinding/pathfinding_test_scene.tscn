@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://diido4xkw638a"]
+
+[ext_resource type="Script" path="res://scenes/pathfinding/pathfinding_test.gd" id="1_cy577"]
+[ext_resource type="PackedScene" uid="uid://bemw1281yna52" path="res://assets/maps/test_meshes/test_geometry.glb" id="1_i82xs"]
+[ext_resource type="ArrayMesh" uid="uid://dvmk3n1dhyvc3" path="res://assets/maps/map_mesh.res" id="3_oxso3"]
+
+[node name="PathfindingTestScene" type="Node3D"]
+script = ExtResource("1_cy577")
+
+[node name="test_geometry" parent="." instance=ExtResource("1_i82xs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125766, 1.19209e-07, -0.0853546)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 5)
+mesh = ExtResource("3_oxso3")
