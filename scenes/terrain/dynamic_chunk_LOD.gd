@@ -4,11 +4,11 @@ extends Node3D
 # Array of LODs in the chunk
 @onready var lod_array :Array[MeshInstance3D] = []
 
-# Material for all LODs
-@export var material :Material
 
 # Heightmap for the chunk
 var heightmap :PackedFloat32Array
+# Material for all LODs
+var material :Material
 
 # Local variables
 var LOD_count :int = 5 # Number of LODs to generate
@@ -17,16 +17,16 @@ var location_in_map :Vector2 = Vector2.ZERO
 var terrain_size :Vector2 = Vector2(1, 1)
 
 
-
 # initialises the heightmap as a PackedFloat32Array and sends the data to the vertex shader
-func init(heightfield:PackedFloat32Array, lod_count:int = 5, lod_offset:int=0, location:Vector2 = Vector2.ZERO, size:Vector2 = Vector2(1, 1)) -> Node3D:
+func init(heightfield:PackedFloat32Array, terrain_material:Material, lod_count:int = 5, lod_offset:int=0, location:Vector2 = Vector2.ZERO, size:Vector2 = Vector2(1, 1)) -> Node3D:
 	# initialise start variables
 	self.LOD_count = lod_count
 	self.LOD_offset = lod_offset
 	self.location_in_map = location
 	self.terrain_size = size
-	# Load the section of the heightmap for this chunk
+	# Load the section of the heightmap for this chunk and the material
 	self.heightmap = heightfield
+	self.material = terrain_material
 	# returns itself so that it can be added to the scene tree
 	return self
 
@@ -36,6 +36,13 @@ func _ready() -> void:
 	# Create a mesh instance 3D and assign a mesh for each LOD
 	for lod in LOD_count:
 		var instance :MeshInstance3D = MeshInstance3D.new()
+		#instance.mesh = PlaneMesh.new()
+		#instance.mesh.set_size(Vector2(1024, 1024))
+		#instance.mesh.set_subdivide_depth(512 / (2 ** lod) - 1)
+		#instance.mesh.set_subdivide_width(512 / (2 ** lod) - 1)
+		#material.set_shader_parameter("uv_offset", Vector2(location_in_map * (Vector2(1, 1) / terrain_size)))
+		#material.set_shader_parameter("uv_scale", Vector2(1.0 / 1024.0, 1.0 / 1024.0) / terrain_size)
+		#instance.mesh.set_material(material)
 		instance.mesh = generate_mesh(lod+2, heightmap, 1000)
 		if lod == LOD_count - 1:
 			instance.visibility_range_begin = 500 * (2 ** lod) - 100
@@ -85,12 +92,9 @@ func generate_mesh(LOD:int, heightmap:PackedFloat32Array, height_scale:float = 1
 		for x in range(0, size + 1, float_size/(float_vertex_count-1)):
 			# sets the UV of the added vertex and then adds the vertex with the correct Y height
 			st.set_uv(Vector2(x, y) * UV_scale + UV_offset)
-			if (y >= size or y <= 0) and vertex_x % 2 == 1: # Selects all of the edge vertices for smooth lod transitions
-				#st.add_vertex(Vector3(x, ((heightmap[vertex_index-(2 ** LOD)] + heightmap[vertex_index+(2 ** LOD)]) / 2) * height_scale, y) + vertex_offset)
-				st.add_vertex(Vector3(x, heightmap[vertex_index] * height_scale, y) + vertex_offset) # default
-				# TODO - average height of vertices on the Y axis
-			else:
-				st.add_vertex(Vector3(x, heightmap[vertex_index] * height_scale, y) + vertex_offset)
+			# TODO - average height of vertices on the X and Y axis for smooth LOD transitions
+			st.add_vertex(Vector3(x, heightmap[vertex_index] * height_scale, y) + vertex_offset)
+			#st.add_vertex(Vector3(x, 0, y) + vertex_offset) # DEBUG test of heightmap in shader
 			
 			# Increment the vertex index by 2**LOD or skip (2**LOD)-1 lines if at the end of a row
 			if vertex_x % vertex_count == vertex_count - 1 and vertex_x != 0:

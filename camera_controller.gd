@@ -60,6 +60,3 @@ func project_to_screen(point:Vector3) -> Vector2:
 
 
 
-
-
-

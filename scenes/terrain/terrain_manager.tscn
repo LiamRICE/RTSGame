@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://0a36qt3vk7od"]
+
+[ext_resource type="Script" path="res://scenes/map_creator.gd" id="1_ljlmc"]
+[ext_resource type="Texture2D" uid="uid://bo4215fcfijof" path="res://assets/maps/map_files/test_map_2/heightmap_test.exr" id="2_higt5"]
+
+[node name="terrain_manager" type="Node3D"]
+script = ExtResource("1_ljlmc")
+heightmap = ExtResource("2_higt5")

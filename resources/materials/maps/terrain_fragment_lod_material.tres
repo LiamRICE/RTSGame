@@ -1,0 +1,34 @@
+[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://b07xoj11jlel3"]
+
+[ext_resource type="Shader" path="res://resources/shaders/maps/terrain_shader.gdshader" id="1_0o8db"]
+[ext_resource type="Texture2D" uid="uid://bvrm3bykskjqc" path="res://assets/maps/textures/aerial_grass_rock_1k/aerial_grass_rock_arm_1k.jpg" id="2_kud5u"]
+[ext_resource type="Texture2D" uid="uid://cke1ppqpjl7dr" path="res://assets/maps/textures/aerial_grass_rock_1k/aerial_grass_rock_diff_1k.jpg" id="2_p1773"]
+[ext_resource type="Texture2D" uid="uid://bkjteycg3cawu" path="res://assets/maps/map_files/test_map_3/large_diffuse_test.jpg" id="3_dtd2o"]
+[ext_resource type="Texture2D" uid="uid://dqegil31tktuo" path="res://assets/maps/textures/aerial_grass_rock_1k/aerial_grass_rock_nor_gl_1k.jpg" id="4_w0lbf"]
+[ext_resource type="Texture2D" uid="uid://bmc114ojt1ew" path="res://assets/maps/map_files/test_map_1/normal_map_test.png" id="6_be875"]
+
+[sub_resource type="Gradient" id="Gradient_1v0j4"]
+offsets = PackedFloat32Array(0.540323, 0.572581, 0.580645)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iot8i"]
+noise_type = 0
+frequency = 0.0587
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_50emp"]
+width = 1024
+height = 1024
+seamless = true
+color_ramp = SubResource("Gradient_1v0j4")
+noise = SubResource("FastNoiseLite_iot8i")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_0o8db")
+shader_parameter/random_noise = SubResource("NoiseTexture2D_50emp")
+shader_parameter/terrain_diffuse = ExtResource("3_dtd2o")
+shader_parameter/terrain_normal_map = ExtResource("6_be875")
+shader_parameter/grass_diffuse = ExtResource("2_p1773")
+shader_parameter/grass_normal_map = ExtResource("4_w0lbf")
+shader_parameter/grass_arm = ExtResource("2_kud5u")

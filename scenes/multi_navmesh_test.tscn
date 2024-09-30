@@ -4,10 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://codd0sfjcvg05" path="res://scenes/player_interface.tscn" id="1_rvsyh"]
 [ext_resource type="PackedScene" uid="uid://biajf8vr8hula" path="res://scenes/deployment_marker.tscn" id="3_3u4w3"]
 [ext_resource type="PackedScene" uid="uid://djdldc1ig3qs" path="res://assets/maps/map_files/test_map_1/test_map_1.blend" id="4_2hs7i"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5bjo"]
-albedo_color = Color(0.707967, 0.707967, 0.707967, 1)
-grow_amount = -0.065
+[ext_resource type="PackedScene" uid="uid://7o2esk1xvufk" path="res://scenes/units/unit.tscn" id="6_djaxg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2scr"]
 albedo_color = Color(0.385558, 0.577629, 1, 1)
@@ -22,16 +19,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6973.31, 144.453, -775.034)
 
 [node name="test_map_1" parent="." instance=ExtResource("4_2hs7i")]
 
-[node name="map_1_mesh" parent="test_map_1" index="0"]
-lod_bias = 128.0
-surface_material_override/0 = SubResource("StandardMaterial3D_f5bjo")
-
-[node name="map_1_rivers_mesh" parent="test_map_1" index="1"]
+[node name="map_1_rivers_mesh" parent="test_map_1" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_s2scr")
+
+[node name="map_1_mesh_modified" parent="test_map_1" index="1" groups=["nav_bake_mesh"]]
+
+[node name="map_1_rivers_navmesh" parent="test_map_1" index="3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="map_1_collision_mesh" parent="test_map_1" index="4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+collision_layer = 2
+collision_mask = 3
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="test_map_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.7091, 125.581, -305.996)
+end_position = Vector3(-5.115, 0.305, -115.915)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.8276, -0.26683, -0.493842, 0, -0.87979, 0.475363, -0.561318, -0.393411, -0.728114, 0, 422.377, 0)
+shadow_enabled = true
+directional_shadow_mode = 0
 directional_shadow_max_distance = 10000.0
+
+[node name="Unit" parent="." instance=ExtResource("6_djaxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 128.199, 0)
 
 [connection signal="spawn_unit" from="PlayerInterface" to="." method="_on_player_interface_spawn_unit"]
 

@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dss27yh4467tm"]
+
+[ext_resource type="Texture2D" uid="uid://bkjteycg3cawu" path="res://assets/maps/map_files/test_map_3/large_diffuse_test.jpg" id="1_mocxh"]
+
+[resource]
+albedo_texture = ExtResource("1_mocxh")

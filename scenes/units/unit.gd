@@ -14,6 +14,7 @@ class_name Unit
 
 # Flags
 @export var is_tracked :bool
+var is_navigating :bool = false
 
 # Variables
 var facing :Vector3
@@ -26,8 +27,10 @@ func _ready():
 
 
 # Physics process is called at fixed intervals (60Hz)
-func _physics_process(delta):
-	if not nav_agent.is_navigation_finished():
+func _physics_process(_delta):
+	if nav_agent.is_navigation_finished():
+		is_navigating = false
+	if is_navigating:
 		calculate_unit_transform()
 		move_and_slide()
 	else:
@@ -79,6 +82,7 @@ func rotate_towards(a: Quaternion, b: Quaternion, angle: float) -> Quaternion:
 # TODO - Create a NavigationServer3D implementation of the path request using the navigation maps
 func update_target_location(target_location:Vector3):
 	nav_agent.target_position = target_location
+	is_navigating = true
 
 
 # TODO - DEBUG : remove when units are defined

@@ -112,10 +112,10 @@ func _input(_event:InputEvent) -> void:
 		# TODO move units to interpolated positions in between two clicks if they are far enough appart
 		# TODO rotate units to the facing perpendicular to the line between the pressed mouse position and released
 		_mouse_right_click = false
-		var mouse_position :Vector2 = get_viewport().get_mouse_position()
-		var camera :Camera3D = get_viewport().get_camera_3d()
-		
-		var camera_raycast_coords :Vector3 = camera_operations.global_position_from_raycast(camera, mouse_position)
+		#var mouse_position :Vector2 = get_viewport().get_mouse_position()
+		#var camera :Camera3D = get_viewport().get_camera_3d()
+		#
+		#var camera_raycast_coords :Vector3 = camera_operations.global_position_from_raycast(camera, mouse_position)
 	
 	if Input.is_action_just_pressed("mouse_right_click") and state == ClickState.DEPLOYING:
 		# update state

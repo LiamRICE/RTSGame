@@ -5,6 +5,8 @@
 .import/
 export.cfg
 export_presets.cfg
+addons
+assets/maps/textures/snow_02_4k.zip
 
 # Imported translations (automatically generated from CSV files)
 *.translation

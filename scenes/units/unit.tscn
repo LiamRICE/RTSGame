@@ -36,6 +36,7 @@ shape = SubResource("CapsuleShape3D_yd01l")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 0.5
 path_height_offset = 0.15
+navigation_layers = 127
 debug_enabled = true
 
 [node name="Selected" type="Sprite3D" parent="."]
