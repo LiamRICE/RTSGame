@@ -9,7 +9,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2scr"]
 albedo_color = Color(0.385558, 0.577629, 1, 1)
 
-[node name="MultiNavmeshTest" type="Node3D"]
+[node name="MultiNavmeshTest" type="CharacterBody3D"]
 script = ExtResource("1_ia4fw")
 
 [node name="PlayerInterface" parent="." instance=ExtResource("1_rvsyh")]
