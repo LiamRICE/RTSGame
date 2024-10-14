@@ -19,6 +19,7 @@ var is_navigating :bool = false
 var facing :Vector3
 
 # Navigation veriables
+var debug_path = preload("res://assets/debug/visualisation_node.tscn")
 var query_parameters := NavigationPathQueryParameters3D.new()
 var query_result := NavigationPathQueryResult3D.new()
 var path:PackedVector3Array
@@ -44,6 +45,15 @@ func _physics_process(_delta):
 		move_and_slide()
 
 
+func show_path(path:PackedVector3Array):
+	print("Printing path...")
+	for point in path:
+		print(point)
+		var path_node:Node3D = debug_path.instantiate()
+		path_node.global_transform.origin = get_position()
+		get_parent().add_child(path_node)
+
+
 
 func query_path(p_start_position: Vector3, p_target_position: Vector3, p_navigation_layers: int = 1) -> PackedVector3Array:
 	if not is_inside_tree():
@@ -64,7 +74,7 @@ func query_path(p_start_position: Vector3, p_target_position: Vector3, p_navigat
 func get_next_path_position() -> Vector3:
 	# if arrived at previous point, direction to next point
 	var target = path[path_index]
-	var direction:Vector3 = global_transform.origin.direction_to(target)
+	var direction:Vector3 = target
 	# if distance to next point is short enough, move to next point
 	var distance:float = global_transform.origin.distance_to(target)
 	if distance < path_distance_cutoff:
@@ -120,13 +130,15 @@ func rotate_towards(a: Quaternion, b: Quaternion, angle: float) -> Quaternion:
 # TODO - Create a NavigationServer3D implementation of the path request using the navigation maps
 func update_target_location(target_location:Vector3):
 	path = query_path(global_transform.origin, target_location)
+	show_path(path)
+	path_index = 0
 	is_navigating = true
 	is_navigation_finished = false
 
 
 # TODO - DEBUG : remove when units are defined
 func set_values() -> void:
-	SPEED = 10
+	SPEED = 100
 	ROTATION_SPEED = 0.05
 	ACCELERATION = 0.5
 	TEAM = 1

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqnilo0fmmps7"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_b3jda"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7un2e"]
+emission_enabled = true
+emission_energy_multiplier = 10.53
+
+[node name="VisualisationNode" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("SphereMesh_b3jda")
+surface_material_override/0 = SubResource("StandardMaterial3D_7un2e")

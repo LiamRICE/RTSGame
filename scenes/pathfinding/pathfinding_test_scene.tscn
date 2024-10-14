@@ -42,5 +42,6 @@ directional_shadow_mode = 0
 directional_shadow_max_distance = 10000.0
 
 [node name="Unit_2" parent="." instance=ExtResource("6_m8g6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 102.482, 0)
 
 [editable path="test_map_1"]
