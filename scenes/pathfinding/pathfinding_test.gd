@@ -14,16 +14,4 @@ func _process(delta):
 
 
 func run_tests():
-	var meshes = geometry_data.get_children()
-	var small_mesh:MeshInstance3D = meshes[0]
-	var medium_mesh:MeshInstance3D = meshes[1]
-	var complex_mesh:MeshInstance3D = meshes[2]
-	
-	var mesh:Mesh = small_mesh.mesh
-	print(small_mesh)
-	print(mesh)
-	print(mesh.get_faces())
-	print(len(mesh.get_faces()))
-	print(mesh.get_surface_count())
-	for x in mesh.get_faces():
-		print(x)
+	pass

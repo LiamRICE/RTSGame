@@ -1,15 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://diido4xkw638a"]
+[gd_scene load_steps=7 format=3 uid="uid://diido4xkw638a"]
 
 [ext_resource type="Script" path="res://scenes/pathfinding/pathfinding_test.gd" id="1_cy577"]
-[ext_resource type="PackedScene" uid="uid://bemw1281yna52" path="res://assets/maps/test_meshes/test_geometry.glb" id="1_i82xs"]
-[ext_resource type="ArrayMesh" uid="uid://dvmk3n1dhyvc3" path="res://assets/maps/map_mesh.res" id="3_oxso3"]
+[ext_resource type="PackedScene" uid="uid://codd0sfjcvg05" path="res://scenes/player_interface.tscn" id="2_cqjnf"]
+[ext_resource type="PackedScene" uid="uid://biajf8vr8hula" path="res://scenes/deployment_marker.tscn" id="3_5dfsk"]
+[ext_resource type="PackedScene" uid="uid://djdldc1ig3qs" path="res://assets/maps/map_files/test_map_1/test_map_1.blend" id="4_3el4x"]
+[ext_resource type="PackedScene" uid="uid://d3jbyegc118wm" path="res://scenes/units/unit_2.tscn" id="6_m8g6g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1n6mm"]
+albedo_color = Color(0.385558, 0.577629, 1, 1)
 
 [node name="PathfindingTestScene" type="Node3D"]
 script = ExtResource("1_cy577")
 
-[node name="test_geometry" parent="." instance=ExtResource("1_i82xs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125766, 1.19209e-07, -0.0853546)
+[node name="PlayerInterface" parent="." instance=ExtResource("2_cqjnf")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 5)
-mesh = ExtResource("3_oxso3")
+[node name="DeploymentMarker" parent="." instance=ExtResource("3_5dfsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6973.31, 144.453, -775.034)
+
+[node name="test_map_1" parent="." instance=ExtResource("4_3el4x")]
+
+[node name="map_1_rivers_mesh" parent="test_map_1" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_1n6mm")
+
+[node name="map_1_rivers_navmesh" parent="test_map_1" index="3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="map_1_collision_mesh" parent="test_map_1" index="4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+collision_layer = 2
+collision_mask = 3
+
+[node name="NavigationLink3D" type="NavigationLink3D" parent="test_map_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.7091, 125.581, -305.996)
+end_position = Vector3(-5.115, 0.305, -115.915)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8276, -0.26683, -0.493842, 0, -0.87979, 0.475363, -0.561318, -0.393411, -0.728114, 0, 422.377, 0)
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_max_distance = 10000.0
+
+[node name="Unit_2" parent="." instance=ExtResource("6_m8g6g")]
+
+[editable path="test_map_1"]
