@@ -20,6 +20,8 @@ func load_navmeshes():
 	navmesh_3 = NavigationMesh.new()
 	navmesh_3.create_from_mesh(children[2].mesh)
 	
-	print(navmesh_1)
+	print(navmesh_1.get_polygon_count())
+	print(navmesh_2.get_polygon_count())
+	print(navmesh_3.get_polygon_count())
 	
 	var newmesh:PolyanyaMesh = PolyanyaMesh.generate_mesh_data_from_navmesh(navmesh_1)

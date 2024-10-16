@@ -7,3 +7,9 @@
 script = ExtResource("1_f0js8")
 
 [node name="test_geometry" parent="." instance=ExtResource("2_vx7x6")]
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18595, 0, 1.68088)
+
+[node name="Marker3D2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.66643, 0, -1.09998)
