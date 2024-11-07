@@ -1,15 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsyu7ux6r20kt"]
+[gd_scene load_steps=6 format=3 uid="uid://bsyu7ux6r20kt"]
 
 [ext_resource type="PackedScene" uid="uid://7o2esk1xvufk" path="res://scenes/units/unit.tscn" id="1_p3gi7"]
 [ext_resource type="Script" path="res://scenes/units/tracked_vehicle.gd" id="2_02c8c"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ugjou"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8d6a4"]
+albedo_color = Color(0, 0.772549, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_36k3v"]
+material = SubResource("StandardMaterial3D_8d6a4")
+
 [node name="TrackedVehicle" instance=ExtResource("1_p3gi7")]
 script = ExtResource("2_02c8c")
-ROTATION_SPEED = 0.5
 SPEED = 5.0
+ROTATION_SPEED = 0.5
 
 [node name="MeshInstance3D" parent="." index="0"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-2, 0, 6.03983e-07, 0, 1, 0, -3.01992e-07, 0, -4, 0, 0, 0)
 mesh = SubResource("BoxMesh_ugjou")
+
+[node name="MeshInstance3D2" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 0.1, 0, -1, -4.37114e-09, 0, 0.05, -3)
+
+[node name="Turret" type="MeshInstance3D" parent="." index="5"]
+transform = Transform3D(-1, 0, 2.26494e-07, 0, 0.6, 0, -1.50996e-07, 0, -1.5, 0, 0.9, 0.5)
+mesh = SubResource("BoxMesh_ugjou")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Turret" index="0"]
+transform = Transform3D(-1, 1.50996e-07, 6.60024e-16, 0, -7.28523e-08, 0.166667, 1.00664e-07, 0.666667, 2.91409e-09, 2.2148e-07, 0.243369, 0.977866)
+mesh = SubResource("PrismMesh_36k3v")
+skeleton = NodePath("../..")
