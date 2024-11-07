@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://hxm1e4y5gaur"]
+[gd_scene load_steps=8 format=3 uid="uid://hxm1e4y5gaur"]
 
 [ext_resource type="Script" path="res://scenes/multi_navmesh_test.gd" id="1_ia4fw"]
 [ext_resource type="PackedScene" uid="uid://codd0sfjcvg05" path="res://scenes/player_interface.tscn" id="1_rvsyh"]
 [ext_resource type="PackedScene" uid="uid://biajf8vr8hula" path="res://scenes/deployment_marker.tscn" id="3_3u4w3"]
 [ext_resource type="PackedScene" uid="uid://djdldc1ig3qs" path="res://assets/maps/map_files/test_map_1/test_map_1.blend" id="4_2hs7i"]
 [ext_resource type="PackedScene" uid="uid://7o2esk1xvufk" path="res://scenes/units/unit.tscn" id="6_djaxg"]
+[ext_resource type="PackedScene" uid="uid://bsyu7ux6r20kt" path="res://scenes/units/tracked_vehicle.tscn" id="6_s4eir"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2scr"]
 albedo_color = Color(0.385558, 0.577629, 1, 1)
@@ -43,8 +44,13 @@ shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_max_distance = 10000.0
 
-[node name="Unit" parent="." instance=ExtResource("6_djaxg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 128.199, 0)
+[node name="Units" type="Node" parent="."]
+
+[node name="Unit" parent="Units" instance=ExtResource("6_djaxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 134.231, 0)
+
+[node name="TrackedVehicle" parent="Units" instance=ExtResource("6_s4eir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.62247, 134.657, -27.6117)
 
 [connection signal="spawn_unit" from="PlayerInterface" to="." method="_on_player_interface_spawn_unit"]
 
