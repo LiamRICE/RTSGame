@@ -32,10 +32,10 @@ func search():
 	
 	while len(open_list) > 0:
 		var node = open_list.pop()
-        #ifndef NDEBUG
-        if verbose:
-            print("popped off: ", node)
-        #endif
+		#ifndef NDEBUG
+		if verbose:
+			print("popped off: ", node)
+		#endif
 
 		nodes_popped += 1
 		var next_poly:int = node.next_polygon # TODO - implement node system?

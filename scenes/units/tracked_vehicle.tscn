@@ -17,14 +17,20 @@ SPEED = 5.0
 ROTATION_SPEED = 0.5
 
 [node name="MeshInstance3D" parent="." index="0"]
-transform = Transform3D(-2, 0, 6.03983e-07, 0, 1, 0, -3.01992e-07, 0, -4, 0, 0, 0)
+transform = Transform3D(-2, 0, 6.03983e-07, 0, 1, 0, -3.01992e-07, 0, -4, 0, 0.501617, 0)
 mesh = SubResource("BoxMesh_ugjou")
 
 [node name="MeshInstance3D2" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 0.1, 0, -1, -4.37114e-09, 0, 0.05, -3)
 
+[node name="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50162, 0)
+
+[node name="Selected" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501617, 0)
+
 [node name="Turret" type="MeshInstance3D" parent="." index="5"]
-transform = Transform3D(-1, 0, 2.26494e-07, 0, 0.6, 0, -1.50996e-07, 0, -1.5, 0, 0.9, 0.5)
+transform = Transform3D(-1, 0, 2.26494e-07, 0, 0.6, 0, -1.50996e-07, 0, -1.5, 0, 1.40162, 0.5)
 mesh = SubResource("BoxMesh_ugjou")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Turret" index="0"]
