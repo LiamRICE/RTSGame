@@ -1,6 +1,6 @@
 extends Unit
 
-class_name TrackedVehicle
+class_name WheeledVehicle
 
 #@export var ROTATION_SPEED: float = 0.5 # speed in radians/sec
 
@@ -55,14 +55,12 @@ func calculate_unit_transform() -> void:
 	# Calculate the direction from the current position to the goal position that the object needs to turn towards
 	var commanded_direction = current_location.direction_to(next_location)
 	
-	# TODO - investigate Curve3D
-	
 	# Fetching data and setting base values
 	# TODO - set vertical facing based on normal of terrain
 	# TODO - set height to terrain height
 	# TODO - fetch required rotation towards target destination
 	# Calculating movement to next position
-	# TODO - if stopped, rotate to target
+	# TODO - if stopped, maneuver to rotate to target (forwards & turn / backwards & turn)
 	# TODO - set move forwards if target is within rotation
 	# TODO - search next movement (turn, sharp turn, end)
 	# TODO - if turn : rotate early based on radius and speed
