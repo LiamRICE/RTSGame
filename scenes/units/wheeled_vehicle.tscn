@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsyu7ux6r20kt"]
+[gd_scene load_steps=6 format=3 uid="uid://h01hjapqml7l"]
 
-[ext_resource type="PackedScene" uid="uid://7o2esk1xvufk" path="res://scenes/units/unit.tscn" id="1_p3gi7"]
-[ext_resource type="Script" path="res://scenes/units/tracked_vehicle.gd" id="2_02c8c"]
+[ext_resource type="PackedScene" uid="uid://7o2esk1xvufk" path="res://scenes/units/unit.tscn" id="1_y2qxy"]
+[ext_resource type="Script" path="res://scenes/units/wheeled_vehicle.gd" id="2_j46el"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ugjou"]
 
@@ -11,10 +11,9 @@ albedo_color = Color(0, 0.772549, 0, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_36k3v"]
 material = SubResource("StandardMaterial3D_8d6a4")
 
-[node name="TrackedVehicle" instance=ExtResource("1_p3gi7")]
-script = ExtResource("2_02c8c")
-SPEED = 5.0
-ROTATION_SPEED = 0.5
+[node name="WheeledVehicle" instance=ExtResource("1_y2qxy")]
+script = ExtResource("2_j46el")
+SPEED = 0.0
 
 [node name="MeshInstance3D" parent="." index="0"]
 transform = Transform3D(-2, 0, 6.03983e-07, 0, 1, 0, -3.01992e-07, 0, -4, 0, 0.501617, 0)
